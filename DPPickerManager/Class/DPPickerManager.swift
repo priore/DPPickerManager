@@ -37,7 +37,7 @@ class DPPickerManager: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     @objc open func showPicker(title: String?, selected: Date?, min: Date?, max: Date?, completion:DPPickerDateCompletion?) {
-        self.showPicker(title: title, datePicker: { (picker) in
+        self.showPicker(title: title, picker: { (picker) in
             picker.date = selected ?? Date()
             picker.minimumDate = min
             picker.maximumDate = max
@@ -46,14 +46,14 @@ class DPPickerManager: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
         }, completion: completion)
     }
     
-    @objc open func showPicker(title: String?, datePicker:((_ picker: UIDatePicker) -> Void)?, completion:DPPickerDateCompletion?) {
-        let picker = UIDatePicker()
-        picker.timeZone = self.timeZone
+    @objc open func showPicker(title: String?, picker:((_ picker: UIDatePicker) -> Void)?, completion:DPPickerDateCompletion?) {
+        let datePicker = UIDatePicker()
+        datePicker.timeZone = self.timeZone
         
-        datePicker?(picker)
+        picker?(datePicker)
         
-        self.showPicker(title: title, picker: picker) { (cancel) in
-            completion?(picker.date, cancel)
+        self.showPicker(title: title, view: datePicker) { (cancel) in
+            completion?(datePicker.date, cancel)
         }
     }
     
@@ -73,7 +73,7 @@ class DPPickerManager: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
             }
         }
 
-        self.showPicker(title: title, picker: picker) { (cancel) in
+        self.showPicker(title: title, view: picker) { (cancel) in
             
             var index = -1
             var value: String? = nil
@@ -89,7 +89,7 @@ class DPPickerManager: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
         }
     }
     
-    @objc open func showPicker(title: String?, picker: UIView, completion:DPPickerCompletion?) {
+    @objc open func showPicker(title: String?, view: UIView, completion:DPPickerCompletion?) {
         
         var center: CGFloat?
         var buttonX: CGFloat = 0
@@ -98,9 +98,9 @@ class DPPickerManager: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
         
         // trick
         let alertView = UIAlertController(title: title, message: "\n\n\n\n\n\n\n\n\n\n", preferredStyle: .actionSheet);
-        alertView.view.addSubview(picker)
+        alertView.view.addSubview(view)
         alertView.popoverPresentationController?.sourceView = UIViewController.top?.view
-        alertView.popoverPresentationController?.sourceRect = picker.bounds
+        alertView.popoverPresentationController?.sourceRect = view.bounds
         alertView.view.tintColor = .gray
         self.alertView = alertView
 
@@ -115,8 +115,8 @@ class DPPickerManager: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
         default: break
         }
         
-        picker.center.x = center ?? 0
-        picker.transform = .init(translationX: -10, y: title != nil ? 35 : 0)
+        view.center.x = center ?? 0
+        view.transform = .init(translationX: -10, y: title != nil ? 35 : 0)
         
         self.pickerCompletion = completion
         

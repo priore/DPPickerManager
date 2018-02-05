@@ -44,7 +44,7 @@ DPPickerManager.shared.showPicker(title: "Date Picker", selected: Date(), min: m
 
 ```swift
 // Time Picker (custom picker)
-DPPickerManager.shared.showPicker(title: "Time Picker", datePicker: { (picker) in
+DPPickerManager.shared.showPicker(title: "Time Picker", picker: { (picker) in
     picker.date = Date()
     picker.datePickerMode = .time
 }) { (date, cancel) in
