@@ -8,11 +8,11 @@
 
 import UIKit
 
-typealias DPPickerCompletion = (_ cancel: Bool) -> Void
-typealias DPPickerDateCompletion = (_ date: Date?, _ cancel: Bool) -> Void
-typealias DPPickerValueIndexCompletion = (_ value: String?, _ index: Int, _ cancel: Bool) -> Void
+public typealias DPPickerCompletion = (_ cancel: Bool) -> Void
+public typealias DPPickerDateCompletion = (_ date: Date?, _ cancel: Bool) -> Void
+public typealias DPPickerValueIndexCompletion = (_ value: String?, _ index: Int, _ cancel: Bool) -> Void
 
-class DPPickerManager: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
+public class DPPickerManager: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
     
     static let shared = DPPickerManager()
 
@@ -139,15 +139,15 @@ class DPPickerManager: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
     
     // MARK: - Picker Delegates
     
-    internal func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return pickerValues?.count == 0 ? 0 : 1
     }
     
-    internal func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return pickerValues?.count ?? 0
     }
     
-    internal func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return pickerValues?[row]
     }
     
