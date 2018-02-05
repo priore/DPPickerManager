@@ -13,7 +13,7 @@
 
 UIPicker inside a UIAlertController
 
-![](/DPPickerManager/DPPickerManager.gif) ![](/DPPickerManager/DPPickerManager.gif)
+![](/DPPickerManager/DPPickerManager.gif)
 
 **HOW TO USE :**
 
@@ -31,6 +31,7 @@ DPPickerManager.shared.showPicker(title: "Strings Picker", selected: "Value 1", 
 
 
 ```swift
+// Date Picker
 let min = Date()
 let max = min.addingTimeInterval(31536000) // 1 year
 DPPickerManager.shared.showPicker(title: "Date Picker", selected: Date(), min: min, max: max) { (date, cancel) in
@@ -42,6 +43,7 @@ DPPickerManager.shared.showPicker(title: "Date Picker", selected: Date(), min: m
 ```
 
 ```swift
+// Time Picker (custom picker)
 DPPickerManager.shared.showPicker(title: "Time Picker", picker: { (picker) in
     picker.date = Date()
     picker.datePickerMode = .time
