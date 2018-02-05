@@ -34,7 +34,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func didTimePicker() {
-        DPPickerManager.shared.showPicker(title: "Time Picker", picker: { (picker) in
+        DPPickerManager.shared.showPicker(title: "Time Picker", datePicker: { (picker) in
             picker.date = Date()
             picker.datePickerMode = .time
         }) { (date, cancel) in

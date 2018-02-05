@@ -22,11 +22,11 @@ class DPPickerManager: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
     private var pickerValues: [String]?
     private var pickerCompletion: PickerCompletionBlock?
     
-    var timeZone: TimeZone? = TimeZone(identifier: "EN")
+    @objc open var timeZone: TimeZone? = TimeZone(identifier: "EN")
     
     // MARK: - Show
     
-    func showPicker(title: String?, selected: Date?, completion:DPPickerDateCompletion?) {
+    @objc open func showPicker(title: String?, selected: Date?, completion:DPPickerDateCompletion?) {
         let currentDate = Date()
         let gregorian = NSCalendar(calendarIdentifier: .gregorian)
         var components = DateComponents()
@@ -36,8 +36,8 @@ class DPPickerManager: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
         self.showPicker(title: title, selected: selected, min: minDate, max: currentDate, completion: completion)
     }
     
-    func showPicker(title: String?, selected: Date?, min: Date?, max: Date?, completion:DPPickerDateCompletion?) {
-        self.showPicker(title: title, picker: { (picker) in
+    @objc open func showPicker(title: String?, selected: Date?, min: Date?, max: Date?, completion:DPPickerDateCompletion?) {
+        self.showPicker(title: title, datePicker: { (picker) in
             picker.date = selected ?? Date()
             picker.minimumDate = min
             picker.maximumDate = max
@@ -46,17 +46,18 @@ class DPPickerManager: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
         }, completion: completion)
     }
     
-    func showPicker(title: String?, picker:((_ picker: UIDatePicker) -> Void)?, completion:DPPickerDateCompletion?) {
-        let datePicker = UIDatePicker()
-        datePicker.timeZone = self.timeZone
-        picker?(datePicker)
+    @objc open func showPicker(title: String?, datePicker:((_ picker: UIDatePicker) -> Void)?, completion:DPPickerDateCompletion?) {
+        let picker = UIDatePicker()
+        picker.timeZone = self.timeZone
         
-        self.showPicker(title: title, picker: datePicker) { (cancel) in
-            completion?(datePicker.date, cancel)
+        datePicker?(picker)
+        
+        self.showPicker(title: title, picker: picker) { (cancel) in
+            completion?(picker.date, cancel)
         }
     }
     
-    func showPicker(title: String?, selected: String?, strings:[String], completion:DPPickerValueIndexCompletion?) {
+    @objc open func showPicker(title: String?, selected: String?, strings:[String], completion:DPPickerValueIndexCompletion?) {
         self.pickerValues = strings
         
         let picker = UIPickerView()
@@ -88,7 +89,7 @@ class DPPickerManager: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
         }
     }
     
-    func showPicker(title: String?, picker: UIView, completion:DPPickerCompletion?) {
+    @objc open func showPicker(title: String?, picker: UIView, completion:DPPickerCompletion?) {
         
         var center: CGFloat?
         var buttonX: CGFloat = 0
@@ -138,19 +139,19 @@ class DPPickerManager: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
     
     // MARK: - Picker Delegates
     
-    public func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    internal func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return pickerValues?.count == 0 ? 0 : 1
     }
     
-    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    internal func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return pickerValues?.count ?? 0
     }
     
-    public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    internal func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return pickerValues?[row]
     }
     
-    @objc func pickerClose(_ sender: UIButton) {
+    @objc internal func pickerClose(_ sender: UIButton) {
         alertView?.dismiss(animated: true, completion: {
             self.pickerCompletion?(true)
         })
