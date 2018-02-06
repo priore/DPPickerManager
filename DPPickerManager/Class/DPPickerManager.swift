@@ -12,7 +12,7 @@ public typealias DPPickerCompletion = (_ cancel: Bool) -> Void
 public typealias DPPickerDateCompletion = (_ date: Date?, _ cancel: Bool) -> Void
 public typealias DPPickerValueIndexCompletion = (_ value: String?, _ index: Int, _ cancel: Bool) -> Void
 
-public class DPPickerManager: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
+open class DPPickerManager: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
     
     static let shared = DPPickerManager()
 
