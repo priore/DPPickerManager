@@ -14,7 +14,7 @@ public typealias DPPickerValueIndexCompletion = (_ value: String?, _ index: Int,
 
 open class DPPickerManager: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    static let shared = DPPickerManager()
+    public static let shared = DPPickerManager()
 
     private typealias PickerCompletionBlock  = (_ cancel: Bool) -> Void
 
