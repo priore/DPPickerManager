@@ -16,5 +16,6 @@ Pod::Spec.new do |s|
   s.framework    = 'UIKit'
   s.source_files = 'DPPickerManager/Class/*.swift'
   s.resources    = 'DPPickerManager/Resources/**/*'
+  s.swift_versions = ['3.0', '4.2', '5.0']
 
 end
