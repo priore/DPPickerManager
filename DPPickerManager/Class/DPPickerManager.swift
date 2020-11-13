@@ -43,13 +43,19 @@ open class DPPickerManager: NSObject, UIPickerViewDelegate, UIPickerViewDataSour
             picker.maximumDate = max
             picker.timeZone = self.timeZone
             picker.datePickerMode = .date
+            if #available(iOS 13.4, *) {
+                picker.preferredDatePickerStyle = .wheels
+            }
         }, completion: completion)
     }
     
     @objc open func showPicker(title: String?, picker:((_ picker: UIDatePicker) -> Void)?, completion:DPPickerDateCompletion?) {
         let datePicker = UIDatePicker()
         datePicker.timeZone = self.timeZone
-        
+        if #available(iOS 13.4, *) {
+            datePicker.preferredDatePickerStyle = .wheels
+        }
+
         picker?(datePicker)
         
         self.showPicker(title: title, view: datePicker) { (cancel) in
@@ -95,9 +101,10 @@ open class DPPickerManager: NSObject, UIPickerViewDelegate, UIPickerViewDataSour
         var buttonX: CGFloat = 0
         
         let image = UIImage(named: "ic_close")?.withRenderingMode(.alwaysTemplate)
-        
+        view.translatesAutoresizingMaskIntoConstraints = false
+
         // trick
-        let alertView = UIAlertController(title: title, message: "\n\n\n\n\n\n\n\n\n\n", preferredStyle: .actionSheet);
+        let alertView = UIAlertController(title: title, message: "\n\n\n\n\n\n\n\n\n\n", preferredStyle: .actionSheet)
         alertView.view.addSubview(view)
         alertView.popoverPresentationController?.sourceView = UIViewController.top?.view
         alertView.popoverPresentationController?.sourceRect = view.bounds
@@ -116,8 +123,11 @@ open class DPPickerManager: NSObject, UIPickerViewDelegate, UIPickerViewDataSour
         }
         
         view.center.x = center ?? 0
-        view.transform = .init(translationX: -10, y: title != nil ? 35 : 0)
-        
+        view.transform = .init(translationX: 0, y: title != nil ? 35 : 0)
+                
+        alertView.view.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        alertView.view.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+
         self.pickerCompletion = completion
         
         // close button
@@ -125,7 +135,16 @@ open class DPPickerManager: NSObject, UIPickerViewDelegate, UIPickerViewDataSour
         close.tintColor = .gray
         close.setImage(image!, for: .normal)
         close.addTarget(self, action: #selector(pickerClose(_:)), for: .touchUpInside)
+        close.translatesAutoresizingMaskIntoConstraints = false
         alertView.view.addSubview(close)
+
+        let topAncor = alertView.view.topAnchor.constraint(equalTo: close.topAnchor)
+        topAncor.isActive = true
+        topAncor.constant = -10
+
+        let rightAncor = alertView.view.rightAnchor.constraint(equalTo: close.rightAnchor)
+        rightAncor.isActive = true
+        rightAncor.constant = 10
 
         // ok button
         let ok = UIAlertAction(title: "Ok", style: .default) { (action) in
