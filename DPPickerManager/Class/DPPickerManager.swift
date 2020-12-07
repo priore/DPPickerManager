@@ -188,7 +188,19 @@ internal extension UIViewController {
 
     static var root: UIViewController? {
         get {
-            return UIApplication.shared.delegate?.window??.rootViewController
+            if #available(iOS 13.0, *) {
+                for scene in UIApplication.shared.connectedScenes {
+                    if scene.activationState == .foregroundActive {
+                        return ((scene as? UIWindowScene)!.delegate as! UIWindowSceneDelegate).window!!.rootViewController
+                    }
+                }
+            }
+            
+            guard let root = UIApplication.shared.delegate?.window??.rootViewController else {
+                return UIApplication.shared.keyWindow?.rootViewController
+            }
+            
+            return root
         }
     }
 
