@@ -73,7 +73,7 @@ open class DPPickerManager: NSObject, UIPickerViewDelegate, UIPickerViewDataSour
             picker.reloadAllComponents()
             if strings.count > 0 {
                 OperationQueue.current?.addOperation {
-                    let index = strings.index(of: value) ?? 0
+                    let index = strings.firstIndex(of: value) ?? 0
                     picker.selectRow(index, inComponent: 0, animated: false)
                 }
             }
@@ -190,9 +190,8 @@ internal extension UIViewController {
         get {
             if #available(iOS 13.0, *) {
                 for scene in UIApplication.shared.connectedScenes {
-                    if scene.activationState == .foregroundActive {
-                        return ((scene as? UIWindowScene)!.delegate as! UIWindowSceneDelegate).window!!.rootViewController
-                    }
+                    guard scene.activationState == .foregroundActive, let winScene = scene as? UIWindowScene, let delegate = winScene.delegate as? UIWindowSceneDelegate else { continue }
+                    return delegate.window??.rootViewController
                 }
             }
             
