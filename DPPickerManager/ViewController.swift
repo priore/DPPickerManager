@@ -2,8 +2,8 @@
 //  ViewController.swift
 //  DPPickerManager
 //
-//  Created by Danilo Priore on 05/02/18.
-//  Copyright © 2018 Danilo Priore. All rights reserved.
+//  Created by Priore on 05/02/18.
+//  Copyright © 2018 Priore. All rights reserved.
 //
 
 import UIKit

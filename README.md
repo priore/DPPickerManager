@@ -1,6 +1,6 @@
 # DPPickerManager
 
-![Stars](https://img.shields.io/github/stars/priore/DPPickerManager.svg) ![Forks](https://img.shields.io/github/forks/priore/DPPickerManager.svg)  [![Version](https://img.shields.io/cocoapods/v/DPPickerManager.svg?style=flat)](http://cocoapods.org/pods/DPPickerManager) [![License](https://img.shields.io/cocoapods/l/DPPickerManager.svg?style=flat)](http://cocoapods.org/pods/DPPickerManager) [![Language](https://img.shields.io/badge/language-Swift-orange.svg?style=flat)]() [![Supports](https://img.shields.io/badge/supports-CocoaPods-green.svg?style=flat)]() [![Platform](https://img.shields.io/cocoapods/p/DPPickerManager.svg?style=flat)](http://cocoapods.org/pods/DPPickerManager) [![Twitter: @DaniloPriore](https://img.shields.io/badge/contact-@DaniloPriore-blue.svg?style=flat)](https://twitter.com/DaniloPriore)
+![Stars](https://img.shields.io/github/stars/priore/DPPickerManager.svg) ![Forks](https://img.shields.io/github/forks/priore/DPPickerManager.svg)  [![Version](https://img.shields.io/cocoapods/v/DPPickerManager.svg?style=flat)](http://cocoapods.org/pods/DPPickerManager) [![License](https://img.shields.io/cocoapods/l/DPPickerManager.svg?style=flat)](http://cocoapods.org/pods/DPPickerManager) [![Language](https://img.shields.io/badge/language-Swift-orange.svg?style=flat)]() [![Supports](https://img.shields.io/badge/supports-CocoaPods-green.svg?style=flat)]() [![Platform](https://img.shields.io/cocoapods/p/DPPickerManager.svg?style=flat)](http://cocoapods.org/pods/DPPickerManager) 
 
 UIPicker inside a UIAlertController
 

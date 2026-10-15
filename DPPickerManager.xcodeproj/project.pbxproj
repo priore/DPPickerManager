@@ -124,7 +124,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
 				LastUpgradeCheck = 1340;
-				ORGANIZATIONNAME = "Danilo Priore";
+				ORGANIZATIONNAME = "Priore";
 				TargetAttributes = {
 					9FF676702028A96300D34A10 = {
 						CreatedOnToolsVersion = 9.2;
@@ -321,7 +321,7 @@
 				DEVELOPMENT_TEAM = JQRB98RUML;
 				INFOPLIST_FILE = DPPickerManager/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.prioregroup.DPPickerManager;
+				PRODUCT_BUNDLE_IDENTIFIER = com.priore.DPPickerManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -336,7 +336,7 @@
 				DEVELOPMENT_TEAM = JQRB98RUML;
 				INFOPLIST_FILE = DPPickerManager/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.prioregroup.DPPickerManager;
+				PRODUCT_BUNDLE_IDENTIFIER = com.priore.DPPickerManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
